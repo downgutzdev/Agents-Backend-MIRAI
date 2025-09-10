@@ -1,0 +1,7 @@
+SQLAlchemy
+requests
+redis
+alembic
+python-dotenv
+psycopg2
+uvicorn
