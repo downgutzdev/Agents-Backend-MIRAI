@@ -9,7 +9,7 @@ app = FastAPI(title="Workflow Backend", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # adjust in production
+    allow_origins=["*"],  # ajuste em produção
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

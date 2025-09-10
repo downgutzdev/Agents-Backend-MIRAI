@@ -20,12 +20,9 @@ class AnalyticsQueryResponse(BaseModel):
 
 @router.post("/query", response_model=AnalyticsQueryResponse, status_code=status.HTTP_200_OK)
 def query(req: AnalyticsQueryRequest):
-    """
-    Handles analytics queries using the fake `generate_query` workflow.
-    """
     try:
         ctx = req.context or {}
-        ctx["user_uuid"] = req.user_uuid   # ensure user_uuid is always present
+        ctx["user_uuid"] = req.user_uuid   # garante presença
         out = run_generate_query(question=req.user_text, session_id=req.session_id, context=ctx)
         return out
     except Exception as e:

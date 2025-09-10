@@ -6,10 +6,10 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 load_dotenv()
 
-# Read directly from .env
+# Lê direto do .env
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
 if not SQLALCHEMY_DATABASE_URI:
-    raise RuntimeError("DATABASE_URL not defined in .env")
+    raise RuntimeError("DATABASE_URL não definido no .env")
 
 # Engine + Session
 engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_pre_ping=True, future=True)
@@ -24,6 +24,6 @@ def get_db():
     finally:
         db.close()
 
-# Useful for local debugging
+# Útil pra depurar local
 def print_config():
     print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")

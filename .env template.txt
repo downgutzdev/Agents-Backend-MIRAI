@@ -1,30 +1,30 @@
 # ============================
-# REQUIRED
+# OBRIGATÓRIO
 # ============================
 
-# Postgres via SQLAlchemy (psycopg2). Format:
-# postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DB_NAME[?params]
+# Postgres via SQLAlchemy (psycopg2). Formato:
+# postgresql+psycopg2://USUARIO:SENHA@HOST:PORTA/NOME_DO_BANCO[?parametros]
 DATABASE_URL=postgresql+psycopg2://master:root@localhost:5432/mirai_session
 
-# Redis via single URL. Accepted formats:
-# - redis://[:PASSWORD]@HOST:PORT/DB
-# - rediss://[:PASSWORD]@HOST:PORT/DB   (TLS)
+# Redis via URL única. Formatos aceitos:
+# - redis://[:SENHA]@HOST:PORTA/DB
+# - rediss://[:SENHA]@HOST:PORTA/DB   (TLS)
 REDIS_URL=redis://:minha_senha@localhost:6379/0
 
 # ============================
-# OPTIONAL (if you use)
+# OPCIONAIS (se você usa)
 # ============================
 
-# Example: LLM key
-GEMINI_API_KEY=put_your_key_here
+# Ex.: chave do LLM
+GEMINI_API_KEY=coloca_sua_chave_aqui
 
-# Environment / logs
+# Ambiente / logs
 APP_ENV=dev
 LOG_LEVEL=INFO
 
-# If your managed Postgres requires SSL:
-# DATABASE_URL=postgresql+psycopg2://user:password@host:5432/db?sslmode=require
+# Se seu Postgres gerenciado exige SSL:
+# DATABASE_URL=postgresql+psycopg2://usuario:senha@host:5432/db?sslmode=require
 
-# If running on Docker Compose, use the service name as host:
+# Se estiver em Docker Compose, use o nome do serviço como host:
 # DATABASE_URL=postgresql+psycopg2://master:root@postgres:5432/mirai_session
 # REDIS_URL=redis://:minha_senha@redis:6379/0

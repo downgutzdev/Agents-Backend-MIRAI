@@ -24,9 +24,9 @@ _session.mount("https://", _adapter)
 def post_agent(agent_key: str, payload: Dict[str, Any], timeout: float | None = None) -> Dict[str, Any]:
     url = AGENT_URLS.get(agent_key)
     if not url:
-        raise ValueError(f"AGENT_URLS has no entry for '{agent_key}'")
+        raise ValueError(f"AGENT_URLS sem entrada para '{agent_key}'")
     t = timeout or AGENT_TIMEOUT
-    headers = {"Connection": "close"}  # ngrok likes this
+    headers = {"Connection": "close"}  # ngrok gosta disso
     if AGENT_DEBUG:
         print(f"[agent_client] POST {url} timeout={t} payload={payload}")
     resp = _session.post(url, json=payload, timeout=t, headers=headers)
@@ -40,6 +40,6 @@ def post_agent(agent_key: str, payload: Dict[str, Any], timeout: float | None = 
     try:
         resp.raise_for_status()
     except requests.HTTPError as e:
-        # include body in error for debugging 4xx (e.g., 422)
+        # inclui corpo no erro para debug de 4xx (ex.: 422)
         raise requests.HTTPError(f"{e}\nResponse body: {resp.text}", response=resp) from e
     return resp.json()

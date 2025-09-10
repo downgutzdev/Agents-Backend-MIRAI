@@ -13,10 +13,6 @@ class PipelineMessageRequest(BaseModel):
 
 @router.post("/message", status_code=status.HTTP_200_OK)
 def message(req: PipelineMessageRequest):
-    """
-    Orchestrates the full pipeline:
-    Guardrails → Trigger → Corresponding workflow.
-    """
     try:
         out = handle_user_message(
             user_text=req.user_text,

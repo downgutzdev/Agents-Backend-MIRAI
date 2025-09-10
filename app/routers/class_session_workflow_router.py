@@ -17,9 +17,6 @@ class ClassRunResponse(BaseModel):
 
 @router.post("/run", response_model=ClassRunResponse, status_code=status.HTTP_200_OK)
 def run(req: ClassRunRequest):
-    """
-    Runs a class session workflow: Planner + Teacher.
-    """
     try:
         out = run_class_session(aluno_uuid=req.student_uuid, question=req.user_text, session_id=req.session_id)
         return {"status": "ok", "planner": out.get("planner"), "professor": out.get("professor")}
@@ -32,15 +29,12 @@ class ClassFinalizeRequest(BaseModel):
 
 class ClassFinalizeResponse(BaseModel):
     status: str
-    sessao_uuid: Optional[str] = None   # kept as-is for DB consistency
-    avaliacao: Optional[Dict[str, Any]] = None  # kept as-is
-    plano: Optional[str] = None         # kept as-is
+    sessao_uuid: Optional[str] = None
+    avaliacao: Optional[Dict[str, Any]] = None
+    plano: Optional[str] = None
 
 @router.post("/finalize", response_model=ClassFinalizeResponse, status_code=status.HTTP_200_OK)
 def finalize(req: ClassFinalizeRequest):
-    """
-    Finalizes a class session: aggregates evaluation + saves plan in DB.
-    """
     try:
         out = finalize_session_with_plan(aluno_uuid=req.student_uuid, session_id=req.session_id)
         return out
